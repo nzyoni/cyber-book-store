@@ -123,7 +123,7 @@ const BooksPreview: React.FC<{ books: BookItem[] }> = ({ books }) => {
         <div>
           <ul>
             {books?.map((book) => (
-              <li>{book.volumeInfo.title}</li>
+              <li key={book.id}>{book.volumeInfo.title}</li>
             ))}
           </ul>
         </div>
