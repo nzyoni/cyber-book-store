@@ -11,13 +11,3 @@ export default async function Home() {
     </main>
   );
 }
-
-/* todo
-    1- shopping cart
-
-    nice 2 have
-    make header sticky
-    style item per row
-    style input a bit
-
-*/
