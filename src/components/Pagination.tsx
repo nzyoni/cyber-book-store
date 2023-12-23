@@ -18,7 +18,7 @@ export const Pagination: React.FC<IPagination> = ({
 }) => {
   return (
     <div className="pagination">
-      items per page
+      Items per page
       <select
         className="page-size-select"
         value={pageSize}

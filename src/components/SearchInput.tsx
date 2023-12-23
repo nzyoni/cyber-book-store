@@ -30,9 +30,9 @@ export const SearchInput = ({
   return (
     <div>
       <input
-        onChange={(e) => debounceOnChange(e.target.value)}
-        style={{ width: "15em", fontSize: "1.25em" }}
+        className="search-input"
         placeholder="Search for a book"
+        onChange={(e) => debounceOnChange(e.target.value)}
       />
     </div>
   );

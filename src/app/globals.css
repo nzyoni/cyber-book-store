@@ -15,6 +15,15 @@ body {
   background-color: #dee9fb;
 }
 
+.search-input {
+  width: 15em;
+  font-size: 1.25em;
+  line-height: 1.5em;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 2px 5px;
+}
+
 .tiles-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -128,6 +137,15 @@ body {
 }
 
 /* Pagination */
+.page-size-select {
+  border: 1px solid black;
+  border-radius: 3px;
+  height: 2.5em;
+  width: 4em;
+  font-size: 1em;
+  text-align: center;
+}
+
 .pagination {
   display: flex;
   align-items: center;
@@ -140,6 +158,7 @@ body {
 
 .previous-page,
 .next-page {
+  background-color: white;
   padding: 0.5em 1em;
   color: #333;
   border: 1px solid black;
