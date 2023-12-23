@@ -1,6 +1,7 @@
 import { BookItem } from "@/app/types";
 import React from "react";
 import { PurchaseModal } from "./Modal";
+import Image from "next/image";
 
 interface BookTileProps {
   book: BookItem;
@@ -27,7 +28,7 @@ export const BookCover: React.FC<{ imageUrl: string; title: string }> = ({
 }) => {
   return imageUrl ? (
     <div>
-      <img className="book-cover" src={imageUrl} alt={title} />
+      <Image className="book-cover" src={imageUrl} alt={title} />
     </div>
   ) : (
     <div className="book-cover empty-book-cover">No Cover Available</div>

@@ -26,7 +26,7 @@ export const BookCatalog = () => {
 
   useEffect(() => {
     fetchBooks({ page: currentPage, pageSize, searchTerm });
-  }, [currentPage, pageSize, searchTerm]);
+  }, [currentPage, pageSize, searchTerm, fetchBooks]);
 
   return (
     <div>
