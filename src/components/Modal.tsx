@@ -13,11 +13,11 @@ import { BookItem } from "@/app/types";
 import React from "react";
 
 interface IModal {
-  book: BookItem;
+  books: BookItem[];
   control: React.ReactNode;
 }
 
-export const PurchaseModal: React.FC<IModal> = ({ book, control }) => {
+export const PurchaseModal: React.FC<IModal> = ({ books, control }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { refs, context } = useFloating({
     open: isOpen,
@@ -71,7 +71,7 @@ export const PurchaseModal: React.FC<IModal> = ({ book, control }) => {
               >
                 X
               </button>
-              <PurchaseForm book={book} onSubmit={() => setIsOpen(false)} />
+              <PurchaseForm books={books} onSubmit={() => setIsOpen(false)} />
             </div>
           </FloatingFocusManager>
         </FloatingOverlay>

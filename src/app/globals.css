@@ -95,6 +95,35 @@ body {
   }
 }
 
+/* Cart */
+.cart {
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+
+  .cart-button {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background-color: #fffd9c;
+    border: 1px solid #9dafdb;
+    font-size: 2em;
+    padding: 0;
+  }
+  .cart-bubble {
+    position: absolute;
+    top: -5px;
+    right: 0;
+    background-color: red;
+    color: white;
+    width: 1.75em;
+    height: 1.75em;
+    font-size: 0.75em;
+    text-align: center;
+    border-radius: 50px;
+  }
+}
+
 /* Pagination */
 .pagination {
   display: flex;

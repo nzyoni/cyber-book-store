@@ -23,9 +23,9 @@ const validationSchema = yup
   .required();
 
 export const PurchaseForm: React.FC<{
-  book: BookItem;
+  books: BookItem[];
   onSubmit(): void;
-}> = ({ book, onSubmit }) => {
+}> = ({ books, onSubmit }) => {
   const {
     register,
     handleSubmit,
@@ -40,13 +40,10 @@ export const PurchaseForm: React.FC<{
 
   return (
     <div style={{ width: "30em" }}>
-      <h3>Buy - {book.volumeInfo.title}</h3>
+      <h3>Please fill in the form to purchase</h3>
       <form onSubmit={handleSubmit(_onSubmit)}>
         <div style={{ display: "flex", gap: "1em" }}>
-          <BookCover
-            imageUrl={book.volumeInfo.imageLinks?.thumbnail}
-            title={book.volumeInfo.title}
-          />
+          <BooksPreview books={books} />
           <div
             style={{
               display: "flex",
@@ -109,6 +106,28 @@ const Field: React.FC<IFieldProps> = ({ name, register, error, label }) => {
       <div>{label}</div>
       <input style={{ fontSize: "1.25em" }} {...register(name)} />
       {error && <div style={{ fontSize: "0.75em", color: "red" }}>{error}</div>}
+    </div>
+  );
+};
+
+const BooksPreview: React.FC<{ books: BookItem[] }> = ({ books }) => {
+  return (
+    <div>
+      <p>You are about to buy</p>
+      {books.length === 1 ? (
+        <BookCover
+          imageUrl={books[0].volumeInfo.imageLinks?.thumbnail}
+          title={books[0].volumeInfo.title}
+        />
+      ) : (
+        <div>
+          <ul>
+            {books?.map((book) => (
+              <li>{book.volumeInfo.title}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

@@ -4,19 +4,21 @@ import { PurchaseModal } from "./Modal";
 
 interface BookTileProps {
   book: BookItem;
+  onAddToCart(book: BookItem): void;
 }
 
-export const BookTile: React.FC<BookTileProps> = ({ book }) => {
-  const { title, imageLinks, authors } = book.volumeInfo;
+export const BookTile: React.FC<BookTileProps> = ({ book, onAddToCart }) => {
+  const { title, imageLinks } = book.volumeInfo;
   const imageUrl = imageLinks?.thumbnail;
 
   return (
     <div className="book-tile">
       <PurchaseModal
-        book={book}
+        books={[book]}
         control={<BookCover imageUrl={imageUrl} title={title} />}
       />
       <h4>{title}</h4>
+      <button onClick={() => onAddToCart(book)}>Add to cart</button>
     </div>
   );
 };
@@ -41,6 +43,7 @@ export const SkeletonTile = () => {
         <div className="skeleton-cover-overly" />
       </div>
       <h4>-----------</h4>
+      <button disabled>Add to cart</button>
     </div>
   );
 };

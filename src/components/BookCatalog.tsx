@@ -8,9 +8,12 @@ import { useCallback, useEffect, useState } from "react";
 import { SearchInput } from "./SearchInput";
 import { usePagination } from "@/hooks/pagination.hook";
 import React from "react";
+import { BookItem } from "@/app/types";
+import { Cart } from "./Cart";
 
 export const BookCatalog = () => {
   const { books, total, isLoading, fetchBooks } = useBooks();
+  const [cart, setCart] = useState<BookItem[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const { currentPage, pageSize, pageAmount, handlePageChange } = usePagination(
     { totalItems: total }
@@ -55,7 +58,13 @@ export const BookCatalog = () => {
         {/* Results */}
         {books &&
           books?.map((book, index) => (
-            <BookTile key={`${index}-${book.id}`} book={book} />
+            <BookTile
+              key={`${index}-${book.id}`}
+              book={book}
+              onAddToCart={(book: BookItem) => {
+                setCart((prev) => [...prev, book]);
+              }}
+            />
           ))}
       </div>
 
@@ -67,6 +76,7 @@ export const BookCatalog = () => {
           onPageChange={handlePageChange}
         />
       )}
+      <Cart items={cart} />
     </div>
   );
 };
