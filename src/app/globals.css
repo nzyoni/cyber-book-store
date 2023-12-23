@@ -2,7 +2,7 @@ html {
   min-height: 100vh;
 }
 body {
-  background: linear-gradient(to bottom, #e0eafc, #cfdef3);
+  background: #dee9fb;
 }
 /* Catalog */
 .search-bar {
@@ -10,6 +10,9 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: #dee9fb;
 }
 
 .tiles-container {

@@ -74,15 +74,6 @@ export const BookCatalog = () => {
             />
           ))}
       </div>
-
-      {total > 0 && (
-        <Pagination
-          currentPage={currentPage}
-          pageSize={pageSize}
-          pageAmount={pageAmount}
-          onPageChange={handlePageChange}
-        />
-      )}
       <Cart items={cart} />
     </div>
   );
