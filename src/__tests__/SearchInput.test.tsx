@@ -2,7 +2,7 @@ import React from "react";
 import { render, fireEvent, act } from "@testing-library/react";
 import { SearchInput, debounceTimeout } from "../components/SearchInput";
 
-jest.useFakeTimers(); // Mock timers to control time-based functions
+jest.useFakeTimers();
 const onChangeMock = jest.fn();
 
 describe("SearchInput component", () => {

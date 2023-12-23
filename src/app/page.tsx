@@ -13,11 +13,10 @@ export default async function Home() {
 }
 
 /* todo
-    initial loading state with skeleton books by the page number
-    make header sticky
+    1- shopping cart
 
-    tests
-    1. searchBooks functionality with the hasbeencalled with
-    2. debounce
-    3. pagination hook? 
+    nice 2 have
+    make header sticky
+    style item per row
+    style input a bit
 */

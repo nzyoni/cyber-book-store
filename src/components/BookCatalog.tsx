@@ -1,6 +1,6 @@
 "use client";
 
-import { BookTile } from "./BookTile";
+import { BookTile, SkeletonTile } from "./BookTile";
 import { useBooks } from "@/hooks/books.hook";
 import { Pagination } from "./Pagination";
 import { useEffect, useMemo, useState } from "react";
@@ -45,7 +45,13 @@ export const BookCatalog = () => {
           onPageChange={handlePageChange}
         />
       </div>
-      {isLoading && !books && <div>initial loader</div>}
+      {isLoading && !books && (
+        <div className="tiles-container">
+          {Array.from({ length: pageSize }).map((_, index) => {
+            return <SkeletonTile />;
+          })}
+        </div>
+      )}
       {!isLoading && !books && (
         <div>No books found, tryo to search something else </div>
       )}

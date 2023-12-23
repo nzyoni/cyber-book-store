@@ -12,17 +12,7 @@ export const BookTile: React.FC<BookTileProps> = ({ book }) => {
   const imageUrl = imageLinks?.thumbnail;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-        background: "white",
-        padding: "1em",
-        borderRadius: "15px",
-      }}
-    >
+    <div className="book-tile">
       <PurchaseModal
         book={book}
         control={<BookCover imageUrl={imageUrl} title={title} />}
@@ -42,5 +32,16 @@ export const BookCover: React.FC<{ imageUrl: string; title: string }> = ({
     </div>
   ) : (
     <div className="book-cover empty-book-cover">No Cover Available</div>
+  );
+};
+
+export const SkeletonTile = () => {
+  return (
+    <div className="book-tile">
+      <div className="skeleton-cover">
+        <div className="skeleton-cover-overly" />
+      </div>
+      <h4>-----------</h4>
+    </div>
   );
 };

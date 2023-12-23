@@ -11,9 +11,19 @@ body {
   grid-gap: 1em;
 }
 
+/* Book tile */
+.book-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: white;
+  padding: 1em;
+  border-radius: 15px;
+}
 .book-cover {
-  border: 1px solid #ccc; /* Border to resemble a book cover */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .empty-book-cover {
@@ -25,6 +35,41 @@ body {
   border: 1px solid #ccc;
 }
 
+/* Skeleton cover */
+.skeleton-cover {
+  width: 128px;
+  height: 192px;
+  background-color: #9dafdb;
+  border-radius: 5px;
+  margin-bottom: 0.5em;
+  position: relative;
+  overflow: hidden;
+
+  .skeleton-cover-overly {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2)
+    );
+    animation: rightToLeftAnimation 1.5s infinite linear;
+  }
+}
+
+@keyframes rightToLeftAnimation {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Loader */
 .loader {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-top: 4px solid #000;
@@ -94,8 +139,6 @@ body {
   text-decoration: none;
 }
 
-/* For responsive adjustments, you can add media queries here */
-
 @media (max-width: 768px) {
   .pagination {
     flex-direction: column;
@@ -108,27 +151,3 @@ body {
     flex-wrap: wrap;
   }
 }
-
-/* @media (min-width: 600px) {
-  .tiles-container {
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(300px, 1fr)
-    ); 
-  }
-}
-
-@media (min-width: 900px) {
-  .tiles-container {
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(350px, 1fr)
-    ); 
-  }
-}
-
-@media (min-width: 1200px) {
-  .tiles-container {
-    grid-template-columns: repeat(5, 1fr); 
-  }
-} */
