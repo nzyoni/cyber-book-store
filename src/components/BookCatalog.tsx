@@ -46,7 +46,7 @@ export const BookCatalog = () => {
         {isLoading &&
           !books &&
           Array.from({ length: pageSize }).map((_, index) => {
-            return <SkeletonTile />;
+            return <SkeletonTile key={index} />;
           })}
         {/* No results */}
         {!isLoading && !books && (
