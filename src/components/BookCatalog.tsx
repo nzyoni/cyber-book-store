@@ -61,8 +61,15 @@ export const BookCatalog = () => {
             <BookTile
               key={`${index}-${book.id}`}
               book={book}
+              isSelected={Boolean(cart.find((_book) => _book.id === book.id))}
               onAddToCart={(book: BookItem) => {
-                setCart((prev) => [...prev, book]);
+                if (cart.find((_book) => _book.id === book.id)) {
+                  setCart((prev) =>
+                    prev.filter((_book) => _book.id !== book.id)
+                  );
+                } else {
+                  setCart((prev) => [...prev, book]);
+                }
               }}
             />
           ))}
