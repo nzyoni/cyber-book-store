@@ -10,6 +10,7 @@ import {
 import { useState } from "react";
 import { PurchaseForm } from "./PurchaseForm";
 import { BookItem } from "@/app/types";
+import React from "react";
 
 interface IModal {
   book: BookItem;

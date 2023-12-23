@@ -1,7 +1,6 @@
 import { BookItem } from "@/app/types";
 import React from "react";
 import { PurchaseModal } from "./Modal";
-import { PurchaseForm } from "./PurchaseForm";
 
 interface BookTileProps {
   book: BookItem;
