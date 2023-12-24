@@ -1,4 +1,4 @@
-import { BookSearchResult } from "@/app/types";
+import { BookSearchResult } from "@/components/types";
 
 const urls = {
   books: ({

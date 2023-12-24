@@ -1,5 +1,5 @@
 "use client";
-import { BookItem } from "@/app/types";
+import { BookItem } from "@/components/types";
 import { booksApiService, searchRequest } from "@/services/books.api.service";
 import { useCallback, useEffect, useState } from "react";
 

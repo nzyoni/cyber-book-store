@@ -9,7 +9,7 @@ import {
 } from "@floating-ui/react";
 import { useState } from "react";
 import { PurchaseForm } from "./PurchaseForm";
-import { BookItem } from "@/app/types";
+import { BookItem } from "@/components/types";
 import React from "react";
 
 interface IModal {

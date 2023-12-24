@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from "react";
 import { SearchInput } from "./SearchInput";
 import { usePagination } from "@/hooks/pagination.hook";
 import React from "react";
-import { BookItem } from "@/app/types";
+import { BookItem } from "@/components/types";
 import { Cart } from "./Cart";
 
 export const BookCatalog = () => {

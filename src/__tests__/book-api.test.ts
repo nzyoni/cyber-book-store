@@ -1,4 +1,4 @@
-import { BookItem, BookSearchResult } from "../app/types";
+import { BookItem, BookSearchResult } from "../components/types";
 import {
   apiLimits,
   booksApiService,

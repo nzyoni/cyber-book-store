@@ -1,4 +1,4 @@
-import { BookItem } from "@/app/types";
+import { BookItem } from "@/components/types";
 import React from "react";
 import { PurchaseModal } from "./Modal";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { BookItem } from "@/app/types";
+import { BookItem } from "@/components/types";
 import { PurchaseModal } from "./Modal";
 
 export const Cart: React.FC<{ items: BookItem[] }> = ({ items }) => {

@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler, UseFormRegister } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { BookItem } from "@/app/types";
+import { BookItem } from "@/components/types";
 import { BookCover } from "./BookTile";
 import React from "react";
 
