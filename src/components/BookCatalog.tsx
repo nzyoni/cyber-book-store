@@ -31,11 +31,24 @@ export const BookCatalog = () => {
     fetchBooks({ page: currentPage, pageSize, searchTerm });
   }, [currentPage, pageSize, searchTerm, fetchBooks]);
 
+  const toggleItemInCart = useCallback(
+    (book: BookItem) => {
+      if (cart.find((_book) => _book.id === book.id)) {
+        setCart((prev) => prev.filter((_book) => _book.id !== book.id));
+      } else {
+        setCart((prev) => [...prev, book]);
+      }
+    },
+    [cart, setCart]
+  );
+
+  console.log("** books", books);
+
   return (
     <div>
       <div className="search-bar">
         <SearchInput onChange={handleSearch} />
-        {isLoading && books && <div className="loader"></div>}
+        {isLoading && books && <div className="loader" />}
         <Pagination
           currentPage={currentPage}
           pageSize={pageSize}
@@ -47,33 +60,30 @@ export const BookCatalog = () => {
       <div className="tiles-container">
         {/* Initial Loading */}
         {isLoading &&
-          !books &&
+          books === undefined &&
           Array.from({ length: pageSize }).map((_, index) => {
             return <SkeletonTile key={index} />;
           })}
-        {/* No results */}
-        {!isLoading && !books && (
-          <div>No books found, try to search something else </div>
-        )}
-        {/* Results */}
+
+        {/* Results - Books */}
         {books &&
           books?.map((book, index) => (
             <BookTile
               key={`${index}-${book.id}`}
               book={book}
-              isSelected={Boolean(cart.find((_book) => _book.id === book.id))}
-              onAddToCart={(book: BookItem) => {
-                if (cart.find((_book) => _book.id === book.id)) {
-                  setCart((prev) =>
-                    prev.filter((_book) => _book.id !== book.id)
-                  );
-                } else {
-                  setCart((prev) => [...prev, book]);
-                }
-              }}
+              isInCart={Boolean(cart.find((_book) => _book.id === book.id))}
+              onAddToCart={toggleItemInCart}
             />
           ))}
       </div>
+
+      {/* No results */}
+      {!isLoading && !books && (
+        <div style={{ textAlign: "center" }}>
+          No books found, try to search something else{" "}
+        </div>
+      )}
+
       <Cart items={cart} />
     </div>
   );

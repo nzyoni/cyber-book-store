@@ -56,19 +56,24 @@ const searchBooks = async ({
   searchTerm = "",
 }: searchRequest): Promise<BookSearchResult> => {
   if (pageSize < apiLimits.maxResults) {
-    return singleSearchBooks({
+    const results = await singleSearchBooks({
       searchTerm,
       startIndex: calcStatIndex(page, pageSize),
       maxResults: pageSize,
     });
+
+    return {
+      items: results.items || [],
+      totalItems: results.totalItems,
+    };
   } else {
     const totalPages = Math.ceil(pageSize / apiLimits.maxResults);
     const requests = [];
-    const relativeStart = calcStatIndex(page, pageSize);
+    const relativeStartIndex = calcStatIndex(page, pageSize);
 
     for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
       const startIndex =
-        relativeStart + calcStatIndex(currentPage, apiLimits.maxResults);
+        relativeStartIndex + calcStatIndex(currentPage, apiLimits.maxResults);
       const maxResults =
         currentPage < totalPages
           ? apiLimits.maxResults
@@ -77,12 +82,15 @@ const searchBooks = async ({
     }
 
     const results: BookSearchResult[] = await Promise.all(requests);
-    const books: BookSearchResult = {
-      items: results.map((result) => result.items).flat(),
+    const booksSearchResult: BookSearchResult = {
+      items: results
+        .map((result) => result.items)
+        .flat()
+        .filter((result) => Boolean(result)),
       totalItems: results[0].totalItems,
     };
 
-    return books;
+    return booksSearchResult;
   }
 };
 

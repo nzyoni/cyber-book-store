@@ -41,7 +41,7 @@ export const Pagination: React.FC<IPagination> = ({
       </a>
       <a
         href="#"
-        className={`next-page ${currentPage === pageAmount ? "disabled" : ""}`}
+        className={`next-page ${currentPage >= pageAmount ? "disabled" : ""}`}
         onClick={() => {
           onPageChange({ page: currentPage + 1 });
         }}

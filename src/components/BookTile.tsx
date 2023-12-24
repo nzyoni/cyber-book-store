@@ -5,13 +5,13 @@ import { PurchaseModal } from "./Modal";
 interface BookTileProps {
   book: BookItem;
   onAddToCart(book: BookItem): void;
-  isSelected: boolean;
+  isInCart: boolean;
 }
 
 export const BookTile: React.FC<BookTileProps> = ({
   book,
   onAddToCart,
-  isSelected,
+  isInCart,
 }) => {
   const { title, imageLinks } = book.volumeInfo;
   const imageUrl = imageLinks?.thumbnail;
@@ -24,7 +24,7 @@ export const BookTile: React.FC<BookTileProps> = ({
       />
       <h4>{title}</h4>
       <button onClick={() => onAddToCart(book)}>
-        {isSelected ? "Remove from" : "Add to"} cart
+        {isInCart ? "Remove from" : "Add to"} cart
       </button>
     </div>
   );
