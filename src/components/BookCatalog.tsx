@@ -76,7 +76,7 @@ export const BookCatalog = () => {
       </div>
 
       {/* No results */}
-      {!isLoading && !books && (
+      {!isLoading && books?.length === 0 && (
         <div style={{ textAlign: "center" }}>
           No books found, try to search something else{" "}
         </div>
