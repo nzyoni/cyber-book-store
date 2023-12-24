@@ -1,10 +1,10 @@
 import { BookSearchResult } from "../components/types";
 import {
   apiLimits,
-  booksApiService,
+  searchBooks,
   searchBooksGoogleApi,
-} from "../services/books.api.service";
-import * as booksApiFile from "../services/books.api.service";
+} from "../app/books/route";
+import * as booksApiFile from "../app/books/route";
 
 const bookResult = {
   items: [
@@ -32,7 +32,7 @@ describe("books api", () => {
   });
 
   test("searchBooks - Single fetch for small page size", () => {
-    booksApiService.searchBooks({ page: 1, pageSize: apiLimits.maxResults });
+    booksApiFile.searchBooks({ page: 1, pageSize: apiLimits.maxResults });
 
     expect(searchBooksGoogleApi).toHaveBeenCalledTimes(1);
     expect(searchBooksGoogleApi).toHaveBeenCalledWith({
@@ -45,7 +45,7 @@ describe("books api", () => {
   test("searchBooks - Multiple fetches for large page size", () => {
     const offset = 10;
 
-    booksApiService.searchBooks({
+    searchBooks({
       page: 1,
       pageSize: apiLimits.maxResults + offset,
     });

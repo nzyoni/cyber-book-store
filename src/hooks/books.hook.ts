@@ -1,6 +1,7 @@
 "use client";
+import { SearchRequest } from "@/app/books/route";
 import { BookItem } from "@/components/types";
-import { booksApiService, searchRequest } from "@/services/books.api.service";
+import { booksApiService } from "@/services/books.api.service";
 import { useCallback, useState } from "react";
 
 export const useBooks = () => {
@@ -10,7 +11,7 @@ export const useBooks = () => {
 
   const fetchBooks = useCallback(
     async (
-      options: searchRequest = {
+      options: SearchRequest = {
         page: 1,
         pageSize: 10,
       }
