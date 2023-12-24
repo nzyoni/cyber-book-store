@@ -18,7 +18,6 @@ export const useBooks = () => {
       setIsLoading(true);
       try {
         const booksResponse = await booksApiService.searchBooks(options);
-        console.log("s", booksResponse);
         setBooks(booksResponse.items);
         setTotal(booksResponse.totalItems);
       } catch (error) {

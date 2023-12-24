@@ -42,8 +42,6 @@ export const BookCatalog = () => {
     [cart, setCart]
   );
 
-  console.log("** books", books);
-
   return (
     <div>
       <div className="search-bar">
