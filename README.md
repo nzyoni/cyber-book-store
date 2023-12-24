@@ -31,6 +31,7 @@ To run this project locally:
 - **Pagination**: Allows users to navigate through search results using paginated views.
 - **Book Details**: Displays book information including title, and cover image.
 - **Skeleton Loader**: Shows animated placeholders while content is loading.
+- **Purchase Form**: Include a form to facilitate book selection and purchase.
 - **Shopping Cart**: Provides a shopping cart functionality for users that wants to buy more than one book.
 
 ## Testing
