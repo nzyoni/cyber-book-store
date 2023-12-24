@@ -1,4 +1,4 @@
-import { SearchRequest } from "@/app/books/utils";
+import { SearchRequest } from "@/app/api/books/utils";
 import React, { useMemo, useState } from "react";
 
 interface IPagination {

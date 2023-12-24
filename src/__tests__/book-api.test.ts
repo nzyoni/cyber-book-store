@@ -1,10 +1,10 @@
 import { BookSearchResult } from "../components/types";
-import * as booksApiFile from "../app/books/utils";
+import * as booksApiFile from "../app/api/books/utils";
 import {
   apiLimits,
   searchBooksGoogleApi,
   searchBooks,
-} from "../app/books/utils";
+} from "../app/api/books/utils";
 
 const bookResult = {
   items: [
