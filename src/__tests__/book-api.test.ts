@@ -1,12 +1,12 @@
-import { BookItem, BookSearchResult } from "../components/types";
+import { BookSearchResult } from "../components/types";
 import {
   apiLimits,
   booksApiService,
-  singleSearchBooks,
+  searchBooksGoogleApi,
 } from "../services/books.api.service";
 import * as booksApiFile from "../services/books.api.service";
 
-const emptyBookResult = {
+const bookResult = {
   items: [
     {
       volumeInfo: {
@@ -17,32 +17,32 @@ const emptyBookResult = {
       },
     },
   ],
-  totalItems: 0,
+  totalItems: 1,
 };
-const _singleSearchBooks = jest.spyOn(booksApiFile, "singleSearchBooks");
+const _searchBooksGoogleApi = jest.spyOn(booksApiFile, "searchBooksGoogleApi");
 
 describe("books api", () => {
   beforeAll(() => {
-    _singleSearchBooks.mockResolvedValue(emptyBookResult as BookSearchResult);
+    _searchBooksGoogleApi.mockResolvedValue(bookResult as BookSearchResult);
   });
 
   beforeEach(() => {
     // Reset the spy before each test
-    _singleSearchBooks.mockClear();
+    _searchBooksGoogleApi.mockClear();
   });
 
-  test("searchBooks should call fetch once when page-size <= api-max-reuslts", () => {
+  test("searchBooks - Single fetch for small page size", () => {
     booksApiService.searchBooks({ page: 1, pageSize: apiLimits.maxResults });
 
-    expect(singleSearchBooks).toHaveBeenCalledTimes(1);
-    expect(singleSearchBooks).toHaveBeenCalledWith({
+    expect(searchBooksGoogleApi).toHaveBeenCalledTimes(1);
+    expect(searchBooksGoogleApi).toHaveBeenCalledWith({
       startIndex: 0,
       maxResults: apiLimits.maxResults,
       searchTerm: "",
     });
   });
 
-  test("searchBooks should call fetch more than one when page-size > api-max-reuslts", () => {
+  test("searchBooks - Multiple fetches for large page size", () => {
     const offset = 10;
 
     booksApiService.searchBooks({
@@ -50,13 +50,13 @@ describe("books api", () => {
       pageSize: apiLimits.maxResults + offset,
     });
 
-    expect(singleSearchBooks).toHaveBeenCalledTimes(2);
-    expect(singleSearchBooks).toHaveBeenCalledWith({
+    expect(searchBooksGoogleApi).toHaveBeenCalledTimes(2);
+    expect(searchBooksGoogleApi).toHaveBeenCalledWith({
       startIndex: 0,
       maxResults: apiLimits.maxResults,
       searchTerm: "",
     });
-    expect(singleSearchBooks).toHaveBeenCalledWith({
+    expect(searchBooksGoogleApi).toHaveBeenCalledWith({
       startIndex: apiLimits.maxResults,
       maxResults: offset,
       searchTerm: "",

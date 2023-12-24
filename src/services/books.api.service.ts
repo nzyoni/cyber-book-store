@@ -25,7 +25,7 @@ export const apiLimits = {
   maxResults: 40,
 };
 
-export const singleSearchBooks = async ({
+export const searchBooksGoogleApi = async ({
   searchTerm,
   startIndex = 0,
   maxResults = 10,
@@ -56,7 +56,7 @@ const searchBooks = async ({
   searchTerm = "",
 }: searchRequest): Promise<BookSearchResult> => {
   if (pageSize < apiLimits.maxResults) {
-    const results = await singleSearchBooks({
+    const results = await searchBooksGoogleApi({
       searchTerm,
       startIndex: calcStatIndex(page, pageSize),
       maxResults: pageSize,
@@ -78,7 +78,9 @@ const searchBooks = async ({
         currentPage < totalPages
           ? apiLimits.maxResults
           : pageSize - (totalPages - 1) * apiLimits.maxResults;
-      requests.push(singleSearchBooks({ searchTerm, startIndex, maxResults }));
+      requests.push(
+        searchBooksGoogleApi({ searchTerm, startIndex, maxResults })
+      );
     }
 
     const results: BookSearchResult[] = await Promise.all(requests);

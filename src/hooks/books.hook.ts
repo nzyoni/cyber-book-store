@@ -1,7 +1,7 @@
 "use client";
 import { BookItem } from "@/components/types";
 import { booksApiService, searchRequest } from "@/services/books.api.service";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 export const useBooks = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,8 +21,9 @@ export const useBooks = () => {
         console.log("s", booksResponse);
         setBooks(booksResponse.items);
         setTotal(booksResponse.totalItems);
-      } catch (eror) {
-        // throw error/ show empty state
+      } catch (error) {
+        console.error("Error fetching books:", error);
+        alert("Couldn't fetch books, please try again");
       } finally {
         setIsLoading(false);
       }
