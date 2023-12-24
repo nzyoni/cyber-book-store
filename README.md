@@ -11,6 +11,7 @@ This project is a web application that offers book search functionality using th
 - [Setup](#setup)
 - [Features](#features)
 - [Testing](#testing)
+- [Libraries Used](#libraries-used)
 
 ## Introduction
 
