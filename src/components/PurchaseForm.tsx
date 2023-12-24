@@ -39,19 +39,12 @@ export const PurchaseForm: React.FC<{
   };
 
   return (
-    <div style={{ width: "30em" }}>
+    <div className="form-container">
       <h3>Please fill in the form to purchase</h3>
       <form onSubmit={handleSubmit(_onSubmit)}>
         <div style={{ display: "flex", gap: "1em" }}>
           <BooksPreview books={books} />
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1em",
-              flexGrow: 1,
-            }}
-          >
+          <div className="form-fields-wrapper">
             <Field
               name="name"
               label={"Name"}
@@ -95,17 +88,10 @@ interface IFieldProps {
 
 const Field: React.FC<IFieldProps> = ({ name, register, error, label }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-
-        textAlign: "left",
-        flexDirection: "column",
-      }}
-    >
+    <div className="form-field">
       <div>{label}</div>
       <input style={{ fontSize: "1.25em" }} {...register(name)} />
-      {error && <div style={{ fontSize: "0.75em", color: "red" }}>{error}</div>}
+      {error && <div className="form-field-error">{error}</div>}
     </div>
   );
 };

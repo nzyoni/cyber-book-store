@@ -16,7 +16,8 @@ interface IModal {
   books: BookItem[];
   control: React.ReactNode;
 }
-
+// Based on Floating-ui library example - Dialog
+// https://floating-ui.com/docs/dialog
 export const PurchaseModal: React.FC<IModal> = ({ books, control }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { refs, context } = useFloating({

@@ -136,6 +136,28 @@ body {
   }
 }
 
+/* Purchase Form */
+.form-container {
+  width: 30em;
+
+  .form-fields-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    flex-grow: 1;
+  }
+
+  .form-field {
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+
+    .form-field-error {
+      font-size: 0.75em;
+      color: red;
+    }
+  }
+}
 /* Pagination */
 .page-size-select {
   border: 1px solid black;
@@ -171,30 +193,6 @@ body {
 .next-page.disabled {
   cursor: not-allowed;
   opacity: 0.5;
-}
-
-.page-numbers {
-  display: flex;
-  margin: 0 1em;
-  gap: 1em;
-}
-
-.page-numbers {
-  padding: 0.5em 1em;
-  border: 1px solid black;
-  border-radius: 3px;
-  margin: 0 0.25em;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.page-numbers active {
-  background-color: #eee;
-}
-
-.page-numbers li a {
-  color: #333;
-  text-decoration: none;
 }
 
 @media (max-width: 768px) {
