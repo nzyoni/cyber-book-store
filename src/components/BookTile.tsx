@@ -1,5 +1,5 @@
 import { BookItem } from "@/components/types";
-import React from "react";
+import React, { useState } from "react";
 import { PurchaseModal } from "./Modal";
 
 interface BookTileProps {
@@ -34,21 +34,33 @@ export const BookCover: React.FC<{ imageUrl: string; title: string }> = ({
   imageUrl,
   title,
 }) => {
+  const [loaded, setLoaded] = useState(false);
+
   return imageUrl ? (
     <div>
-      <img className="book-cover" src={imageUrl} alt={title} />
+      <div style={!loaded ? { display: "block" } : { display: "none" }}>
+        {skeletonImage}
+      </div>
+      <img
+        className="book-cover"
+        src={imageUrl}
+        alt={title}
+        onLoad={() => setLoaded(true)}
+      />
     </div>
   ) : (
     <div className="book-cover empty-book-cover">No Cover Available</div>
   );
 };
-
+const skeletonImage = (
+  <div className="skeleton-cover">
+    <div className="skeleton-cover-overly" />
+  </div>
+);
 export const SkeletonTile = () => {
   return (
     <div className="book-tile">
-      <div className="skeleton-cover">
-        <div className="skeleton-cover-overly" />
-      </div>
+      {skeletonImage}
       <h4>-----------</h4>
       <button disabled>Add to cart</button>
     </div>
