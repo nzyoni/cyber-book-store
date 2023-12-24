@@ -1,4 +1,4 @@
-import { SearchRequest } from "@/app/books/route";
+import { SearchRequest } from "@/app/books/utils";
 import { BookSearchResult } from "@/components/types";
 
 const searchBooks = async (
