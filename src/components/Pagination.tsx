@@ -1,4 +1,4 @@
-import { searchRequest } from "@/services/books.api.service";
+import { SearchRequest } from "@/app/api/books/utils";
 import React, { useMemo, useState } from "react";
 
 interface IPagination {
@@ -8,7 +8,7 @@ interface IPagination {
   onPageChange({ page, pageSize }: { page: number; pageSize?: number }): void;
 }
 
-const pageSizeOptions: searchRequest["pageSize"][] = [10, 25, 50, 100];
+const pageSizeOptions: SearchRequest["pageSize"][] = [10, 25, 50, 100];
 
 export const Pagination: React.FC<IPagination> = ({
   currentPage,
