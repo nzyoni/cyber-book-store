@@ -47,6 +47,7 @@ export const BookCatalog: React.FC<{ initialData: BookSearchResult }> = ({
   );
 
   const books = data?.items;
+
   return (
     <div>
       <div className="search-bar">
