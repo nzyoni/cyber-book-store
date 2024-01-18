@@ -5,7 +5,7 @@ const searchBooks = async (
   options: SearchRequest
 ): Promise<BookSearchResult> => {
   try {
-    const response = await fetch("/api/books", {
+    const response = await fetch(`/api/books`, {
       method: "post",
       body: JSON.stringify(options),
     });

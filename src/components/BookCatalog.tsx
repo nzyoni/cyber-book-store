@@ -1,23 +1,31 @@
 "use client";
 
 import { BookTile, SkeletonTile } from "./BookTile";
-import { useBooks } from "@/hooks/books.hook";
 import { Pagination } from "./Pagination";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 import { SearchInput } from "./SearchInput";
 import { usePagination } from "@/hooks/pagination.hook";
 import React from "react";
-import { BookItem } from "@/components/types";
+import { BookItem, BookSearchResult } from "@/components/types";
 import { Cart } from "./Cart";
+import { useFetchBooks } from "@/hooks/useFetchBooks";
 
-export const BookCatalog = () => {
-  const { books, total, isLoading, fetchBooks } = useBooks();
+export const BookCatalog: React.FC<{ initialData: BookSearchResult }> = ({
+  initialData,
+}) => {
   const [cart, setCart] = useState<BookItem[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const { currentPage, pageSize, pageAmount, handlePageChange } = usePagination(
-    { totalItems: total }
+    { totalItems: initialData.totalItems }
   );
+
+  const { data, isLoading } = useFetchBooks({
+    page: currentPage,
+    pageSize,
+    searchTerm,
+    initialData,
+  });
 
   const handleSearch = useCallback(
     (value: string) => {
@@ -26,10 +34,6 @@ export const BookCatalog = () => {
     },
     [setSearchTerm, handlePageChange]
   );
-
-  useEffect(() => {
-    fetchBooks({ page: currentPage, pageSize, searchTerm });
-  }, [currentPage, pageSize, searchTerm, fetchBooks]);
 
   const toggleItemInCart = useCallback(
     (book: BookItem) => {
@@ -41,6 +45,8 @@ export const BookCatalog = () => {
     },
     [cart, setCart]
   );
+
+  const books = data?.items;
 
   return (
     <div>
