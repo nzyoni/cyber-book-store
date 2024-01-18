@@ -1,7 +1,7 @@
 import { SearchRequest } from "@/app/api/books/utils";
 import { BookSearchResult } from "@/components/types";
 
-const hostUrl = process.env.URL ?? "";
+const hostUrl = process.env.URL ?? process.env.VERCEL_URL ?? "";
 
 const searchBooks = async (
   options: SearchRequest
