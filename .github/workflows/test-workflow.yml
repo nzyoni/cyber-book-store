@@ -1,8 +1,8 @@
-name: GitHub Actions Demo
+name: Test-Workflow
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
-  Test-Workflow:
+  Test-Job:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
