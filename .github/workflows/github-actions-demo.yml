@@ -10,7 +10,7 @@ jobs:
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: Install dependencies
-        run: npm run install
+        run: npm install
       # - name: Build project
       #   run: npm run build
       - name: Run integration test using npm run test
