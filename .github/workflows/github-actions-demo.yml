@@ -11,11 +11,6 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: Install dependencies
         run: npm install
-      # - name: Build project
-      #   run: npm run build
       - name: Run integration test using npm run test
         run: npm run test
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
