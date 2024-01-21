@@ -1,6 +1,6 @@
 name: Test-Workflow
 
-run-name: CI - ${{ github.ref_name }} - ${{ github.actor }} 🚀
+run-name: Build ${{ github.actor }}/${{ github.ref_name }}
 
 on: [push]
 
