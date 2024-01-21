@@ -1,0 +1,20 @@
+name: Deploy App
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm install
+      - name: Run integration test using npm run test
+        run: npm run test
+      - name: Deploy
+        run: echo "Deploying to ???"
