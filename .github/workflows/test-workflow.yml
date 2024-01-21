@@ -5,15 +5,39 @@ run-name: Build ${{ github.actor }}/${{ github.ref_name }}
 on: [push]
 
 jobs:
-  Test-Job:
+  checkout-repo:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+
+  install-deps:
+    needs: [checkout-repo]
+    runs-on: ubuntu-latest
+    steps:
       - name: Install dependencies
         run: npm install
-      - name: Run integration test using npm run test
+  lint:
+    needs: [install-deps]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lint project
+        run: npm run lint
+  test:
+    needs: [install-deps]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run integration tests
         run: npm run test
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+  # Test-Job:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Check out repository code
+  #       uses: actions/checkout@v4
+  #     - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+  #     - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+  #     - name: Install dependencies
+  #       run: npm install
+  #     - name: Run integration test using npm run test
+  #       run: npm run test
+  #     - run: echo "🍏 This job's status is ${{ job.status }}."
